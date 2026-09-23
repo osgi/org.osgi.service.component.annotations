@@ -1,0 +1,13 @@
+# Set javac settings from JDT prefs
+
+Bundle-Description			= DS Annotations Test Bundle
+
+-privatepackage 			= ${p}.*
+
+-dsannotations: ${p}.*
+
+
+-includeresource: \
+ OSGI-INF/vendor.properties;literal="vendor=impl"
+
+p: org.osgi.impl.bundle.component.annotations
