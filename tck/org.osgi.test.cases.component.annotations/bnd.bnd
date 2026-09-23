@@ -1,22 +1,20 @@
 # Set javac settings from JDT prefs
--include: ${includes}/jdt.bnd, ${includes}/osgi.tck.junit-platform.bnd, ${includes}/tck.bnd, ${includes}/cmpn.bnd
 
 -conditionalpackage					= org.osgi.test.support.*
 -privatepackage						=  \
 	${p}.junit
--includeresource					= resources, \
- OSGI-INF/impl-src=${project.workspace}/org.osgi.impl.bundle.component.annotations/src
+-includeresource					= \
+ OSGI-INF/impl-src=../org.osgi.impl.bundle.component.annotations/src/main/java
 
--buildpath = \
-    org.osgi.test.support;version=project , \
-    org.osgi.framework;maven-scope=provided;version=1.8, \
-	org.osgi.service.component;version=latest
+p: org.osgi.test.cases.component.annotations
 
--runbundles = \
-    org.osgi.impl.bundle.component.annotations; version=latest, \
-    org.osgi.impl.service.component; version=latest, \
-    org.osgi.impl.service.cm; version=latest, \
-    org.osgi.impl.service.log; version=latest
+# Maven build: workspace includes replaced inline (from cnf/includes and build.bnd in osgi/osgi)
+# -make.maven, not -make: the key is a map entry and would displace
+# a project-level -make (webcontainer also builds .war recipes this
+# way). bnd merges all -make.* entries.
+-make.maven: (*).(jar); type=bnd; recipe="bnd/$1.bnd"
 
--runproperties = ${runproperties}, \
-	${p}.bundle.symbolic.name=org.osgi.impl.bundle.component.annotations
+testcases.junit3: ${classes;EXTENDS;junit.framework.TestCase;CONCRETE}
+testcases.junit4: ${classes;HIERARCHY_ANNOTATED;org.junit.Test;CONCRETE}
+testcases.junit5: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+Test-Cases: ${sort;${uniq;${testcases.junit3};${testcases.junit4};${testcases.junit5}}}
