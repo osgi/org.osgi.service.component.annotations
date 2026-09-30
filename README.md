@@ -1,5 +1,9 @@
 # org.osgi.service.component.annotations
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/osgi/org.osgi.service.component.annotations/badge)](https://securityscorecards.dev/viewer/?uri=github.com/osgi/org.osgi.service.component.annotations)
+[![build](https://github.com/osgi/org.osgi.service.component.annotations/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/osgi/org.osgi.service.component.annotations/actions/workflows/build.yml)
+[![Maven Central](https://img.shields.io/maven-central/v/org.osgi/org.osgi.service.component.annotations)](https://central.sonatype.com/artifact/org.osgi/org.osgi.service.component.annotations)
+
 OSGi Specification repo for org.osgi.service.component.annotations
 
 Part of the [OSGi Specification Project](https://projects.eclipse.org/projects/technology.osgi).
