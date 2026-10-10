@@ -19,8 +19,8 @@
 
 package org.osgi.test.cases.component.annotations.junit;
 
-import org.osgi.test.support.xpath.BaseElement;
-import org.osgi.test.support.xpath.BaseNamespaceContext;
+import org.osgi.test.assertj.xml.SimpleNamespaceContext;
+import org.osgi.test.assertj.xml.XmlElement;
 import org.w3c.dom.Element;
 
 /**
@@ -28,13 +28,13 @@ import org.w3c.dom.Element;
  * 
  * @author $Id$
  */
-public class Description extends BaseElement {
+public class Description extends XmlElement {
 	/**
 	 * @param name
 	 * @param context
 	 * @param component
 	 */
-	public Description(String name, BaseNamespaceContext context,
+	public Description(String name, SimpleNamespaceContext context,
 			Element component) {
 		super(name, context, component);
 	}

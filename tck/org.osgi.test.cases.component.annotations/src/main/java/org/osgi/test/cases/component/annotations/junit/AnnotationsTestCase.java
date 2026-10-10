@@ -23,6 +23,7 @@ import static org.osgi.test.assertj.dictionary.DictionaryAssert.assertThat;
 
 import java.io.StringWriter;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
@@ -40,19 +41,23 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.service.component.ComponentConstants;
-import org.osgi.test.support.junit4.AbstractOSGiTestCase;
-import org.osgi.test.support.string.Strings;
-import org.osgi.test.support.xpath.BaseNamespaceContext;
+import org.osgi.test.assertj.xml.SimpleNamespaceContext;
+import org.osgi.test.common.annotation.InjectBundleContext;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public abstract class AnnotationsTestCase extends AbstractOSGiTestCase {
+public abstract class AnnotationsTestCase {
+	@InjectBundleContext
+	protected BundleContext				bundleContext;
+	protected String					testMethodName;
 	public static final String			xmlns_scr100	= "http://www.osgi.org/xmlns/scr/v1.0.0";
 	public static final String			xmlns_scr110	= "http://www.osgi.org/xmlns/scr/v1.1.0";
 	public static final String			xmlns_scr120	= "http://www.osgi.org/xmlns/scr/v1.2.0";
@@ -61,7 +66,12 @@ public abstract class AnnotationsTestCase extends AbstractOSGiTestCase {
 	public static final String			xmlns_scr150	= "http://www.osgi.org/xmlns/scr/v1.5.0";
 	protected Map<String,Description>	descriptions;
 
-	@Before
+	@BeforeEach
+	void testMethodName(TestInfo testInfo) {
+		testMethodName = testInfo.getTestMethod().get().getName();
+	}
+
+	@BeforeEach
 	public void loadComponentDescriptions() throws Exception {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setNamespaceAware(true);
@@ -73,12 +83,12 @@ public abstract class AnnotationsTestCase extends AbstractOSGiTestCase {
 		descriptions = new HashMap<>();
 
 		String propName = "org.osgi.test.cases.component.annotations.bundle.symbolic.name";
-		String bsn = getProperty(propName);
+		String bsn = bundleContext.getProperty(propName);
 		assertThat(bsn).as(
 				"The system property \"%s\" must be set to the Bundle Symbolic Name of the bundle processed by the Component Annotations tool.",
 				propName).isNotNull();
 		Bundle impl = null;
-		for (Bundle b : getContext().getBundles()) {
+		for (Bundle b : bundleContext.getBundles()) {
 			if (bsn.equals(b.getSymbolicName())) {
 				impl = b;
 				break;
@@ -93,7 +103,7 @@ public abstract class AnnotationsTestCase extends AbstractOSGiTestCase {
 		String header = headers.get(ComponentConstants.SERVICE_COMPONENT);
 		assertThat(header).as("%s header is missing",
 				ComponentConstants.SERVICE_COMPONENT).isNotNull();
-		List<String> clauses = Strings.split(header);
+		List<String> clauses = Arrays.asList(header.trim().split("\\s*,\\s*"));
 		assertThat(clauses)
 				.as("%s header is empty", ComponentConstants.SERVICE_COMPONENT)
 				.isNotEmpty();
@@ -119,14 +129,14 @@ public abstract class AnnotationsTestCase extends AbstractOSGiTestCase {
 						.as("multiple descriptions with the same name %s", name)
 						.doesNotContainKey(name);
 				descriptions.put(name, new Description(name,
-						new BaseNamespaceContext("scr", xmlns_scr100), root));
+						new SimpleNamespaceContext("scr", xmlns_scr100), root));
 				continue;
 			}
 			NodeList namespaces = (NodeList) expr.evaluate(document,
 					XPathConstants.NODESET);
 			for (int i = 0; i < namespaces.getLength(); i++) {
 				Attr namespace = (Attr) namespaces.item(i);
-				BaseNamespaceContext context = new BaseNamespaceContext(
+				SimpleNamespaceContext context = new SimpleNamespaceContext(
 						namespace);
 				xpath.setNamespaceContext(context);
 				NodeList components = (NodeList) xpath.evaluate(

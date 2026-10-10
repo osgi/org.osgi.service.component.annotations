@@ -20,7 +20,7 @@ package org.osgi.test.cases.component.annotations.junit;
 
 import static org.osgi.test.cases.component.annotations.junit.DescriptionXPathAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author $Id$
@@ -58,7 +58,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testHelloWorld11() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasNamespace(xmlns_scr110)
@@ -86,7 +86,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testHelloWorld12() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasNamespace(xmlns_scr120)
@@ -111,7 +111,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testHelloWorld13() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasNamespace(xmlns_scr130)
@@ -141,7 +141,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testService() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -179,7 +179,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testComponentReferences() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -234,7 +234,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testNoService() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -246,7 +246,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testNoInheritService() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -258,7 +258,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testReferences() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -415,7 +415,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testFieldReferences() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -956,7 +956,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testReferenceScopes() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1045,7 +1045,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testReferenceNames() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1070,7 +1070,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testReferenceService() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1083,7 +1083,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testServiceFactory() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1118,7 +1118,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testNoServiceFactory() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1149,7 +1149,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testServiceSingleton() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1180,7 +1180,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testServiceBundle() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1212,7 +1212,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testServicePrototype() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1246,7 +1246,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testFactory() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1280,7 +1280,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testImmediate() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1293,7 +1293,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testDelayed() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1306,7 +1306,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testEnabled() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1319,7 +1319,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testDisabled() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1332,7 +1332,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testConfigPolicyOptional() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.1.0
@@ -1344,7 +1344,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testConfigPolicyRequire() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.1.0
@@ -1356,7 +1356,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testConfigPolicyIgnore() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.1.0
@@ -1368,7 +1368,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testConfigPid() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.2.0
@@ -1377,7 +1377,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testConfigPidMultiple() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.3.0
@@ -1390,7 +1390,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 	 */
 	@Test
 	public void testProperties() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -1411,7 +1411,7 @@ public class DSAnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testPropertyOrdering() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0

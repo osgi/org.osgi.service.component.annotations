@@ -18,11 +18,11 @@
 
 package org.osgi.test.cases.component.annotations.junit;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
-import org.osgi.test.support.string.Strings;
-import org.osgi.test.support.xpath.AbstractXPathAssert;
+import org.osgi.test.assertj.xml.AbstractXPathAssert;
 import org.w3c.dom.Node;
 
 public class DescriptionXPathAssert
@@ -62,8 +62,7 @@ public class DescriptionXPathAssert
 		Assertions.assertThat(result)
 				.as("%s/text() value for node %s", expr, actual.getId())
 				.isNotNull();
-		List<String> split = Strings.split("\\s*\\n\\s*",
-				result.getNodeValue());
+		List<String> split = Arrays.asList(result.getNodeValue().trim().split("\\s*\\n\\s*"));
 		Assertions.assertThat(split)
 				.as("%s/text() value for node %s", expr, actual.getId())
 				.containsExactly(values);
@@ -96,8 +95,7 @@ public class DescriptionXPathAssert
 		Assertions.assertThat(result)
 				.as("%s/text() value for node %s", expr, actual.getId())
 				.isNotNull();
-		List<String> split = Strings.split("\\s*\\n\\s*",
-				result.getNodeValue());
+		List<String> split = Arrays.asList(result.getNodeValue().trim().split("\\s*\\n\\s*"));
 		Assertions.assertThat(split)
 				.as("%s/text() value for node %s", expr, actual.getId())
 				.containsExactly(values);

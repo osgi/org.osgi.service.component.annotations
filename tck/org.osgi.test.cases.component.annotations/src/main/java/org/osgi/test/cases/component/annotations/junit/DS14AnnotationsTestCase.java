@@ -20,7 +20,7 @@ package org.osgi.test.cases.component.annotations.junit;
 
 import static org.osgi.test.cases.component.annotations.junit.DescriptionXPathAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author $Id$
@@ -29,7 +29,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testHelloWorld14() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasNamespace(xmlns_scr140)
@@ -61,7 +61,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testFactoryProperties() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.4.0
@@ -83,7 +83,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testNameMapping() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasCount("property", 12)
@@ -110,7 +110,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testComponentPropertyTypes() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasCount("property", 13)
@@ -140,7 +140,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testComponentPropertyTypesWithEmptyArray() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as(() -> {
 			try {
@@ -161,7 +161,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testActivationFields() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				// v1.0.0
@@ -193,7 +193,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testLoggerComponent() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasValue("@init", "2")
@@ -280,7 +280,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testPropertyOrdering14() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasCount("properties", 1)
@@ -322,7 +322,7 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testConstructorInjection() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasValue("@init", "25")

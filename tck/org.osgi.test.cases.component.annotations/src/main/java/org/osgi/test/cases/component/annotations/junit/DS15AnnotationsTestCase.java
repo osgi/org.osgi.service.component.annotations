@@ -20,7 +20,7 @@ package org.osgi.test.cases.component.annotations.junit;
 
 import static org.osgi.test.cases.component.annotations.junit.DescriptionXPathAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author $Id$
@@ -29,7 +29,7 @@ public class DS15AnnotationsTestCase extends AnnotationsTestCase {
 
 	@Test
 	public void testHelloWorld15() throws Exception {
-		String name = testName.getMethodName();
+		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
 				.hasNamespace(xmlns_scr150)
