@@ -7,7 +7,7 @@
 
 -resolve.effective: active
 
--runvm: ${def;argLine}, -Djava.security.manager=allow
+-runvm: ${def;argLine}
 
 -runproperties: \
 	org.osgi.test.cases.component.annotations.bundle.symbolic.name=org.osgi.impl.bundle.component.annotations
