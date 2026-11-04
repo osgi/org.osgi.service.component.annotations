@@ -764,12 +764,19 @@ public class DS14AnnotationsTestCase extends AnnotationsTestCase {
 		String name = testMethodName;
 		Description description = descriptions.get(name);
 		assertThat(description).as("component %s", name)
-				.hasCount("property", 3)
+				.hasCount("property", 7)
 				.hasPropertyValue("constant.prefix.stringProperty", "String",
 						"specified.constant.value")
 				.hasPropertyValue("constant.prefix.intProperty", "Integer",
 						"200")
+				.hasPropertyArrayValue("constant.prefix.intsProperty", "Integer", "200", "300")
 				.hasPropertyValue("constant.prefix.anotherProperty", "String",
-						"literal.specified.value");
+						"literal.specified.value")
+				.hasPropertyArrayValue("constant.prefix.stringsProperty", "String", //
+						"specified.constant.value", "specified.constant.value2")
+				.hasPropertyArrayValue("constant.prefix.anotherStringsProperty", "String", //
+						"literal.specified.value1", "literal.specified.value2")
+				.hasPropertyArrayValue("constant.prefix.classesProperty", "String", //
+						"java.lang.String", "java.util.List");
 	}
 }

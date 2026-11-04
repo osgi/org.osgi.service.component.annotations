@@ -35,8 +35,10 @@ public class ComponentPropertyTypeWithConstants {
 	public static class Constants {
 		public static final String	DEFAULT_STRING_VALUE	= "default.constant.value";
 		public static final String	SPECIFIED_STRING_VALUE	= "specified.constant.value";
+		public static final String	SPECIFIED_STRING_VALUE2	= "specified.constant.value2";
 		public static final int		DEFAULT_INT_VALUE		= 100;
 		public static final int		SPECIFIED_INT_VALUE		= 200;
+		public static final int		SPECIFIED_INT_VALUE2	= 300;
 		public static final String	PREFIX_VALUE			= "constant.prefix.";
 	}
 
@@ -52,16 +54,28 @@ public class ComponentPropertyTypeWithConstants {
 
 		int intProperty() default Constants.DEFAULT_INT_VALUE;
 
+		int[] intsProperty() default {};
+
 		String anotherProperty() default "literal.default.value";
+
+		String[] stringsProperty() default {};
+
+		String[] anotherStringsProperty() default {};
+
+		Class<?>[] classesProperty() default {};
 	}
 
 	/**
 	 * Component using the property type with constant values specified.
 	 */
 	@Component(name = "testComponentPropertyTypeWithConstants")
-	@PropertyTypeWithConstants(stringProperty = Constants.SPECIFIED_STRING_VALUE,
-			intProperty = Constants.SPECIFIED_INT_VALUE,
-			anotherProperty = "literal.specified.value")
+	@PropertyTypeWithConstants( //
+			stringProperty = Constants.SPECIFIED_STRING_VALUE, anotherProperty = "literal.specified.value", //
+			intProperty = Constants.SPECIFIED_INT_VALUE, //
+			intsProperty = { Constants.SPECIFIED_INT_VALUE, Constants.SPECIFIED_INT_VALUE2 }, //
+			stringsProperty = { Constants.SPECIFIED_STRING_VALUE, Constants.SPECIFIED_STRING_VALUE2 }, //
+			anotherStringsProperty = { "literal.specified.value1", "literal.specified.value2" }, //
+			classesProperty = { String.class, java.util.List.class })
 	public static class TestComponent {
 		@Activate
 		private void activate() {
