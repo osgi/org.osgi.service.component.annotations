@@ -30,6 +30,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.service.condition</artifactId>
+			<version>${org.osgi.service.condition.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.service.log</artifactId>
 			<version>${org.osgi.service.log.version}</version>
 			<scope>compile</scope>
